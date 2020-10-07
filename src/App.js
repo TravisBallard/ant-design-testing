@@ -18,12 +18,24 @@ import CountryInfo from './CountryInfo'
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu;
 
+/**
+ * Get countries from API
+ * @returns {Promise<Response|void>}
+ */
 const getCountries = async () => {
   return await fetch('https://restcountries.eu/rest/v2/all')
     .then(result => result.json())
     .catch(e => console.error(e))
 }
 
+/**
+ * Build Countries SubMenu
+ *
+ * @param countries
+ * @param handleSelect
+ * @param selectedCountry
+ * @returns {JSX.Element}
+ */
 const buildCountriesMenu = (countries, handleSelect, selectedCountry) => {
   return (
     <SubMenu key="countries" icon={<UserOutlined />} title="Countries">
