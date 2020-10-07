@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from 'react'
 import {Alert, Button, DatePicker, message} from 'antd'
 import {Layout, Menu, Breadcrumb, Select} from 'antd'
+import slugify from 'slugify'
+
 import {
   GlobalOutlined,
 } from '@ant-design/icons'
@@ -70,17 +72,26 @@ function App() {
     getCountries()
       .then(result => {
         setCountries(result)
-        setSelectedCountry(result[Math.floor(Math.random() * result.length)])
+        if (window.location.pathname === '/') {
+          setSelectedCountry(result[Math.floor(Math.random() * result.length)])
+        } else {
+
+          const selected = result.filter(c => (`/${slugify(c.name.toLowerCase())}/` === window.location.pathname ))[0]
+          setSelectedCountry(selected)
+        }
       })
   }, [])
 
   useEffect(() => {
     window.scrollTo({top: 0, behavior: 'smooth'})
-    const selected = document.getElementsByClassName('ant-menu-item-selected')
-    if (selected.length) {
-      for (const item of selected) {
-        if (item.innerHTML !== selectedCountry.name) {
-          item.classList.remove('ant-menu-item-selected')
+    if (selectedCountry) {
+      window.history.pushState(null, null, `/${slugify(selectedCountry.name.toLowerCase())}/`)
+      const selected = document.getElementsByClassName('ant-menu-item-selected')
+      if (selected.length) {
+        for (const item of selected) {
+          if (item.innerHTML !== selectedCountry.name) {
+            item.classList.remove('ant-menu-item-selected')
+          }
         }
       }
     }

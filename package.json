@@ -14,7 +14,8 @@
     "pigeon-marker": "^0.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "slugify": "^1.4.5"
   },
   "scripts": {
     "start": "craco start",
