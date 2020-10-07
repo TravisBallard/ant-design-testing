@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Alert, Button, DatePicker, message} from 'antd'
 import {Layout, Menu, Breadcrumb, Select} from 'antd'
 import {
@@ -65,7 +65,6 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState(null)
 
   const handleCountrySelect = value => setSelectedCountry(countries.filter(country => country.name === value)[0])
-  const searchCountryRef = useRef(null)
 
   useEffect(() => {
     getCountries()
