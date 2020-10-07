@@ -27,37 +27,41 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           <Card style={style}>
             <Statistic title={`population`} value={population} prefix={<UsergroupAddOutlined />} />
           </Card>
-          <Card style={style} title={(<><AudioOutlined /> Languages</>)}>
-            {languages.length > 0 && (
-              <List
-                itemLayout={`horizontal`}
-                dataSource={languages.map((language) => { return {title: language.name}})}
-                renderItem={(item) => (
-                  <List.Item>
-                    <List.Item.Meta
-                      title={[item.title]}
-                    />
-                  </List.Item>
-                )}
-              />
-            )}
-          </Card>
-          <Card style={style} title={(<><DollarOutlined /> Currencies</>)}>
-            {currencies.length > 0 && (
-              <List
-                itemLayout={`horizontal`}
-                dataSource={currencies.map((currency) => { return {title: currency.code, symbol: currency.symbol}})}
-                renderItem={(item) => (
-                  <List.Item>
-                    <List.Item.Meta
-                      title={`${[item.title]}`}
-                      description={`Symbol: ${[item.symbol]}`}
-                    />
-                  </List.Item>
-                )}
-              />
-            )}
-          </Card>
+          {languages && (
+            <Card style={style} title={(<><AudioOutlined /> Languages</>)}>
+              {languages.length > 0 && (
+                <List
+                  itemLayout={`horizontal`}
+                  dataSource={languages.map((language) => { return {title: language.name}})}
+                  renderItem={(item) => (
+                    <List.Item>
+                      <List.Item.Meta
+                        title={[item.title]}
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
+            </Card>
+          )}
+          {currencies && (
+            <Card style={style} title={(<><DollarOutlined /> Currencies</>)}>
+              {currencies.length > 0 && (
+                <List
+                  itemLayout={`horizontal`}
+                  dataSource={currencies.map((currency) => { return {title: currency.code, symbol: currency.symbol}})}
+                  renderItem={(item) => (
+                    <List.Item>
+                      <List.Item.Meta
+                        title={`${[item.title]}`}
+                        description={`Symbol: ${[item.symbol]}`}
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
+            </Card>
+          )}
 
         </Col>
         <Col span={8}className="gutter-row">

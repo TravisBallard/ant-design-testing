@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect} from 'react'
 import {Alert, Button, DatePicker, message} from 'antd'
-import {Layout, Menu, Breadcrumb} from 'antd'
+import {Layout, Menu, Breadcrumb, Select} from 'antd'
 import {
   GlobalOutlined,
 } from '@ant-design/icons'
@@ -64,6 +64,8 @@ function App() {
   const [countries, setCountries] = useState([])
   const [selectedCountry, setSelectedCountry] = useState(null)
 
+  const handleCountrySelect = value => setSelectedCountry(countries.filter(country => country.name === value)[0])
+
   useEffect(() => {
     getCountries()
       .then(result => {
@@ -74,6 +76,14 @@ function App() {
 
   useEffect(() => {
     window.scrollTo({top: 0, behavior: 'smooth'})
+    const selected = document.getElementsByClassName('ant-menu-item-selected')
+    if (selected.length) {
+      for (const item of selected) {
+        if (item.innerHTML !== selectedCountry.name) {
+          item.classList.remove('ant-menu-item-selected')
+        }
+      }
+    }
   }, [selectedCountry])
 
   return (
@@ -92,7 +102,28 @@ function App() {
       </Sider>
 
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: '10px 0' }} />
+        <Header className="site-layout-background" style={{ padding: '0 20px 0 0', justifyContent: 'flex-end', display: 'flex' }}>
+          {countries.length > 0 && selectedCountry && (
+            <div>
+              <Select
+                showSearch
+                placeholder={`Select a country`}
+                optionFilterProp={"children"}
+                onChange={handleCountrySelect}
+                filterOption={(input, Option) =>Option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                style={{width: 200}}
+                defaultValue={selectedCountry.name}
+                key={selectedCountry.name}
+              >
+                {countries.map(country => (
+                  <Select.Option value={country.name}>
+                    {country.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
+          )}
+        </Header>
         <Content style={{ margin: '0 16px' }}>
 
           {selectedCountry && <CountryInfo {...selectedCountry}/>}
