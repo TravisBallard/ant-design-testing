@@ -13,7 +13,6 @@ import {
 import './App.less'
 import "antd/dist/antd.less"
 
-import TestComponent from './TestComponent'
 import CountryInfo from './CountryInfo'
 
 const { Header, Content, Footer, Sider } = Layout
