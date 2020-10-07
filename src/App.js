@@ -57,6 +57,12 @@ const buildCountriesMenu = (countries, handleSelect, selectedCountry) => {
   )
 }
 
+/**
+ * Magic
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function App() {
 
   const [collapsed, setCollapsed] = useState(false)
