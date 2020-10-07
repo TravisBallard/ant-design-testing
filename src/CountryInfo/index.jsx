@@ -1,30 +1,33 @@
 import React from 'react'
 import {Col, Row, Divider, Card, Statistic, PageHeader, List, Avatar} from 'antd'
-import {PushpinFilled} from '@ant-design/icons-svg'
+import {UsergroupAddOutlined, HomeOutlined, DollarOutlined, AudioOutlined, GlobalOutlined} from '@ant-design/icons'
 import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker'
 
 const CountryInfo = ({name, capital, region, subregion, population, latlng, currencies, languages, flag}) => {
   const style = { marginBottom: 20 }
-  console.log(`latlng`, latlng)
+
   return (
     <>
-      <PageHeader title={name} />
+      <PageHeader title={name} style={{paddingBottom: 0, paddingTop: 25}} />
       <Divider />
       <Row gutter={20}>
         <Col span={8} className="gutter-row">
           <Card style={style}>
-            <Statistic title={`Capital`} value={capital} />
+            <img src={flag} alt={"flag"} style={{width: '100%'}} />
           </Card>
           <Card style={style}>
-            <Statistic title={subregion} value={region} />
+            <Statistic title={`Capital`} value={capital} prefix={<HomeOutlined />} />
+          </Card>
+          <Card style={style}>
+            <Statistic title={subregion} value={region} prefix={<GlobalOutlined />} />
           </Card>
         </Col>
         <Col span={8} className="gutter-row">
           <Card style={style}>
-            <Statistic title={`population`} value={population} />
+            <Statistic title={`population`} value={population} prefix={<UsergroupAddOutlined />} />
           </Card>
-          <Card style={style} title={`Languages`}>
+          <Card style={style} title={(<><AudioOutlined /> Languages</>)}>
             {languages.length > 0 && (
               <List
                 itemLayout={`horizontal`}
@@ -39,7 +42,7 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
               />
             )}
           </Card>
-          <Card style={style} title={`Currencies`}>
+          <Card style={style} title={(<><DollarOutlined /> Currencies</>)}>
             {currencies.length > 0 && (
               <List
                 itemLayout={`horizontal`}

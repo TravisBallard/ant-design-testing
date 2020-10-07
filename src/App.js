@@ -3,11 +3,7 @@ import React, {useState, useEffect} from 'react'
 import {Alert, Button, DatePicker, message} from 'antd'
 import {Layout, Menu, Breadcrumb} from 'antd'
 import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons'
 
 import './App.less'
@@ -38,7 +34,7 @@ const getCountries = async () => {
  */
 const buildCountriesMenu = (countries, handleSelect, selectedCountry) => {
   return (
-    <SubMenu key="countries" icon={<UserOutlined />} title="Countries">
+    <SubMenu key="countries" icon={<GlobalOutlined />} title="Countries">
       {countries.map(country => (
         <Menu.Item
           key={country.alpha2Code}
@@ -64,7 +60,6 @@ const buildCountriesMenu = (countries, handleSelect, selectedCountry) => {
  * @constructor
  */
 function App() {
-
   const [collapsed, setCollapsed] = useState(false)
   const [countries, setCountries] = useState([])
   const [selectedCountry, setSelectedCountry] = useState(null)
@@ -83,8 +78,8 @@ function App() {
 
   return (
     <Layout className="App" style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
 
+      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
         <Menu
           theme="dark"
           defaultSelectedKeys={selectedCountry ? selectedCountry.alpha2Code : ''}
@@ -93,17 +88,19 @@ function App() {
         >
           {countries.length > 0 && buildCountriesMenu(countries, setSelectedCountry, selectedCountry)}
           {countries.length === 0 && (<Menu.Item>Loading Countries...</Menu.Item>)}
-
         </Menu>
       </Sider>
 
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: '10px 0' }} />
         <Content style={{ margin: '0 16px' }}>
+
           {selectedCountry && <CountryInfo {...selectedCountry}/>}
+
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
       </Layout>
+
     </Layout>
   );
 }
