@@ -1,7 +1,6 @@
 
 import React, {useState, useEffect} from 'react'
-import {Alert, Button, DatePicker, message} from 'antd'
-import {Layout, Menu, Breadcrumb, Select} from 'antd'
+import {Layout, Menu, Select} from 'antd'
 import slugify from 'slugify'
 
 import {
@@ -137,7 +136,7 @@ function App() {
         </Header>
         <Content style={{ margin: '0 16px' }}>
 
-          {selectedCountry && <CountryInfo {...selectedCountry}/>}
+          {selectedCountry && <CountryInfo countries={countries} {...selectedCountry}/>}
 
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
