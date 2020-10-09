@@ -145,7 +145,7 @@ function App() {
   return (
     <Layout className="App" style={{ minHeight: '100vh' }}>
 
-      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed} style={{maxHeight: '100vh', overflow: 'scroll'}}>
         <Menu
           theme="dark"
           defaultSelectedKeys={selectedCountry ? selectedCountry.alpha2Code : ''}
