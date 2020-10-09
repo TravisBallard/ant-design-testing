@@ -1,6 +1,5 @@
-
 import React, {useState, useEffect} from 'react'
-import {Layout, Menu, Select, Button} from 'antd'
+import {Layout, Menu, Select, Button, Typography} from 'antd'
 import slugify from 'slugify'
 import moment from 'moment'
 
@@ -14,7 +13,8 @@ import "antd/dist/antd.less"
 import CountryInfo from './CountryInfo'
 
 const { Header, Content, Footer, Sider } = Layout
-const { SubMenu } = Menu;
+const { SubMenu } = Menu
+const { Title } = Typography
 
 /**
  * Get countries from API
@@ -139,29 +139,20 @@ function App() {
   }, [selectedCountry])
 
   useEffect(() => {
-    console.log('exchangeRates updated', exchangeRates)
+    //console.log('exchangeRates updated', exchangeRates)
   }, [exchangeRates])
 
   return (
-    <Layout className="App" style={{ minHeight: '100vh' }}>
-
-      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed} style={{maxHeight: '100vh', overflow: 'scroll'}}>
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={selectedCountry ? selectedCountry.alpha2Code : ''}
-          defaultOpenKeys={['countries']}
-          mode="inline"
-        >
-          {countries.length > 0 && buildCountriesMenu(countries, setSelectedCountry, selectedCountry)}
-          {countries.length === 0 && (<Menu.Item>Loading Countries...</Menu.Item>)}
-        </Menu>
-      </Sider>
-
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: '0 20px 0 0', justifyContent: 'flex-end', display: 'flex' }}>
+    <>
+      <Header className="site-layout-background" style={{ padding: '0 20px 0 0', display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+        <div>
+          {selectedCountry && (<Title className={'page-title'}>{selectedCountry.name}</Title>)}
+        </div>
+        <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <div style={{marginRight: 20}}>
             <Button type={'primary'} onClick={loadRandomCountry}>Random Country</Button>
           </div>
+
           {countries.length > 0 && selectedCountry && (
             <div>
               <Select
@@ -182,16 +173,33 @@ function App() {
               </Select>
             </div>
           )}
-        </Header>
-        <Content style={{ margin: '0 16px' }}>
+        </div>
+      </Header>
+      <Layout className="App" style={{ minHeight: '100vh', height: '100vh' }}>
 
-          {selectedCountry && exchangeRates && <CountryInfo countries={countries} exchangeRates={exchangeRates} {...selectedCountry}/>}
+        <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed} style={{maxHeight: '100vh', overflow: 'scroll'}}>
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={selectedCountry ? selectedCountry.alpha2Code : ''}
+            defaultOpenKeys={['countries']}
+            mode="inline"
+          >
+            {countries.length > 0 && buildCountriesMenu(countries, setSelectedCountry, selectedCountry)}
+            {countries.length === 0 && (<Menu.Item>Loading Countries...</Menu.Item>)}
+          </Menu>
+        </Sider>
 
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        <Layout className="site-layout">
+          <Content style={{ margin: '0 16px' }}>
+
+            {selectedCountry && exchangeRates && <CountryInfo countries={countries} exchangeRates={exchangeRates} {...selectedCountry}/>}
+
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
+
       </Layout>
-
-    </Layout>
+    </>
   );
 }
 
