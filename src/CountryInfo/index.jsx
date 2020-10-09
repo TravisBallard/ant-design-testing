@@ -17,7 +17,7 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
 
   return (
     <>
-      <Row gutter={20}>
+      <Row gutter={20} style={{padding: '20px 0'}}>
         <Col xs={24} md={12} xl={8} className="gutter-row">
 
           {flag && (
@@ -41,7 +41,7 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           )}
 
         </Col>
-        <Col xs={24} sm={12} xl={8} className="gutter-row">
+        <Col xs={24} md={12} xl={8} className="gutter-row">
 
           {population && (
             <Card style={style} loading={loaded}>
@@ -93,11 +93,15 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           )}
 
         </Col>
-        <Col xs={24} sm={12} xl={8} className="gutter-row">
-          <Map center={latlng} zoom={3}>
-            <Marker anchor={latlng} payload={1} onClick={({event, anchor, payload}) => {
-            }}/>
-          </Map>
+        <Col xs={24} md={12} xl={8} className="gutter-row">
+          <Card>
+            <div style={{height: '20vw', width: '100%'}}>
+              <Map center={latlng} zoom={3}>
+                <Marker anchor={latlng} payload={1} onClick={({event, anchor, payload}) => {
+                }}/>
+              </Map>
+            </div>
+          </Card>
         </Col>
       </Row>
     </>
