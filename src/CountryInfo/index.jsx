@@ -1,52 +1,24 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {Col, Row, Divider, Card, Statistic, PageHeader, List, Typography} from 'antd'
 import {UsergroupAddOutlined, HomeOutlined, DollarOutlined, AudioOutlined, GlobalOutlined} from '@ant-design/icons'
-import {Pie} from '@ant-design/charts'
+import FluctuationGraph from '../FluctuationGraph'
+import PopulationDonut from '../PopulationDonut'
 import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker'
-import FluctuationGraph from '../FluctuationGraph'
-
-const {Title} = Typography
 
 const CountryInfo = ({name, capital, region, subregion, population, latlng, currencies, languages, flag, countries, exchangeRates}) => {
   const style = {marginBottom: 20}
   const [loaded, setLoaded] = useState(false)
 
   const countriesInRegion = [...countries.filter(country => country.subregion === subregion)]
-  const data = [...countriesInRegion.map(country => {
+  const countryPopulationData = [...countriesInRegion.map(country => {
     return {'type': country.name, 'value': parseInt(country.population)}
   })].slice(0, 10)
 
-  const populationChartConfig = {
-    appendPadding: 10,
-    data,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 1,
-    innerRadius: 0.5,
-    label: {
-      type: 'inner',
-      offset: '-0.5',
-      content: '{percentage}',
-      style: {
-        fill: '#fff',
-        fontSize: 14,
-        textAlign: 'center'
-      }
-    },
-    statistic: {
-      title: false,
-      content: true
-    },
-    interactions: [{type: 'pie-statistic-active'}]
-  }
-
   return (
     <>
-      <PageHeader title={name} style={{paddingBottom: 0, paddingTop: 25}}/>
-      <Divider/>
       <Row gutter={20}>
-        <Col span={8} className="gutter-row">
+        <Col xs={24} md={12} xl={8} className="gutter-row">
 
           {flag && (
             <Card style={style}>
@@ -63,17 +35,13 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           {region && subregion && (
             <Card style={style}>
               <Statistic title={subregion} value={region} prefix={<GlobalOutlined/>}/>
-              <div style={{position: 'relative', display: 'block', height: 400}}>
-                <Divider/>
-                <Title level={4} style={{marginBottom: '-40px'}}>Top {data.length} largest countries
-                  in {subregion} based on population.</Title>
-                <Pie {...populationChartConfig}/>
-              </div>
+              <Divider/>
+              <PopulationDonut data={countryPopulationData} region={subregion} />
             </Card>
           )}
 
         </Col>
-        <Col span={8} className="gutter-row">
+        <Col xs={24} sm={12} xl={8} className="gutter-row">
 
           {population && (
             <Card style={style} loading={loaded}>
@@ -125,7 +93,7 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           )}
 
         </Col>
-        <Col span={8} className="gutter-row">
+        <Col xs={24} sm={12} xl={8} className="gutter-row">
           <Map center={latlng} zoom={3}>
             <Marker anchor={latlng} payload={1} onClick={({event, anchor, payload}) => {
             }}/>
