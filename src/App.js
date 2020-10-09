@@ -1,7 +1,8 @@
 
 import React, {useState, useEffect} from 'react'
-import {Layout, Menu, Select} from 'antd'
+import {Layout, Menu, Select, Button} from 'antd'
 import slugify from 'slugify'
+import moment from 'moment'
 
 import {
   GlobalOutlined,
@@ -17,12 +18,46 @@ const { SubMenu } = Menu;
 
 /**
  * Get countries from API
+ *
  * @returns {Promise<Response|void>}
  */
 const getCountries = async () => {
+  const storedData = localStorage.getItem('countryData')
+  if (storedData) return JSON.parse(storedData)
+
   return await fetch('https://restcountries.eu/rest/v2/all')
     .then(result => result.json())
+    .then(result => {
+      localStorage.setItem('countryData', JSON.stringify(result))
+      return result
+    })
     .catch(e => console.error(e))
+}
+
+/**
+ * Get exchange rates from api
+ *
+ * @param symbol
+ * @param startDate
+ * @param endDate
+ * @returns {Promise<*>}
+ */
+const getExchangeRateHistory = async (num = 3, unit = 'days', base = 'USD', symbols = null) => {
+  let localStorageKey = `exchange_rates_${num}_${unit}_${base}`
+  if (symbols) localStorageKey += `_${symbols.replace(/,/g,'-')}`
+
+  const storedValue = localStorage.getItem(localStorageKey)
+  if (storedValue) return JSON.parse(storedValue)
+
+  let apiUrl = `https://api.exchangerate.host/timeseries?end_date=${moment().format('YYYY-MM-DD')}&start_date=${moment().subtract(num, unit).format('YYYY-MM-DD')}&base=USD`
+  if (symbols) apiUrl += `&symbols=${symbols}`
+
+  return await fetch(apiUrl)
+    .then(response => response.json())
+    .then(result => {
+      localStorage.setItem(localStorageKey, JSON.stringify(result))
+      return result
+    })
 }
 
 /**
@@ -64,8 +99,11 @@ function App() {
   const [collapsed, setCollapsed] = useState(false)
   const [countries, setCountries] = useState([])
   const [selectedCountry, setSelectedCountry] = useState(null)
+  const [exchangeRates, setExchangeRates] = useState({})
 
   const handleCountrySelect = value => setSelectedCountry(countries.filter(country => country.name === value)[0])
+
+  const loadRandomCountry = () => setSelectedCountry(countries[Math.floor(Math.random() * countries.length)])
 
   useEffect(() => {
     getCountries()
@@ -79,6 +117,10 @@ function App() {
           setSelectedCountry(selected)
         }
       })
+
+    getExchangeRateHistory(30).then(result => {
+      setExchangeRates(result.rates)
+    })
   }, [])
 
   useEffect(() => {
@@ -95,6 +137,10 @@ function App() {
       }
     }
   }, [selectedCountry])
+
+  useEffect(() => {
+    console.log('exchangeRates updated', exchangeRates)
+  }, [exchangeRates])
 
   return (
     <Layout className="App" style={{ minHeight: '100vh' }}>
@@ -113,6 +159,9 @@ function App() {
 
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: '0 20px 0 0', justifyContent: 'flex-end', display: 'flex' }}>
+          <div style={{marginRight: 20}}>
+            <Button type={'primary'} onClick={loadRandomCountry}>Random Country</Button>
+          </div>
           {countries.length > 0 && selectedCountry && (
             <div>
               <Select
@@ -136,7 +185,7 @@ function App() {
         </Header>
         <Content style={{ margin: '0 16px' }}>
 
-          {selectedCountry && <CountryInfo countries={countries} {...selectedCountry}/>}
+          {selectedCountry && exchangeRates && <CountryInfo countries={countries} exchangeRates={exchangeRates} {...selectedCountry}/>}
 
         </Content>
         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

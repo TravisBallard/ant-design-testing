@@ -4,14 +4,18 @@ import {UsergroupAddOutlined, HomeOutlined, DollarOutlined, AudioOutlined, Globa
 import {Pie} from '@ant-design/charts'
 import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker'
+import FluctuationGraph from '../FluctuationGraph'
+
 const {Title} = Typography
 
-const CountryInfo = ({name, capital, region, subregion, population, latlng, currencies, languages, flag, countries}) => {
-  const style = { marginBottom: 20 }
+const CountryInfo = ({name, capital, region, subregion, population, latlng, currencies, languages, flag, countries, exchangeRates}) => {
+  const style = {marginBottom: 20}
   const [loaded, setLoaded] = useState(false)
 
   const countriesInRegion = [...countries.filter(country => country.subregion === subregion)]
-  const data = [...countriesInRegion.map(country => { return { 'type': country.name, 'value': parseInt(country.population) } })].slice(0,10)
+  const data = [...countriesInRegion.map(country => {
+    return {'type': country.name, 'value': parseInt(country.population)}
+  })].slice(0, 10)
 
   const populationChartConfig = {
     appendPadding: 10,
@@ -27,46 +31,42 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
       style: {
         fill: '#fff',
         fontSize: 14,
-        textAlign: 'center',
-      },
+        textAlign: 'center'
+      }
     },
     statistic: {
       title: false,
-      content: true,
-      // title: { formatter: (foo) => {
-      //   console.log('foo', foo)
-      //   return name
-      // } },
-      // content: { formatter: () => population },
+      content: true
     },
-    interactions: [{ type: 'pie-statistic-active' }],
+    interactions: [{type: 'pie-statistic-active'}]
   }
 
   return (
     <>
-      <PageHeader title={name} style={{paddingBottom: 0, paddingTop: 25}} />
-      <Divider />
+      <PageHeader title={name} style={{paddingBottom: 0, paddingTop: 25}}/>
+      <Divider/>
       <Row gutter={20}>
         <Col span={8} className="gutter-row">
 
           {flag && (
             <Card style={style}>
-              <img src={flag} alt={"flag"} style={{width: '100%'}} />
+              <img src={flag} alt={"flag"} style={{width: '100%'}}/>
             </Card>
           )}
 
           {capital && (
             <Card style={style}>
-              <Statistic title={`Capital`} value={capital} prefix={<HomeOutlined />} />
+              <Statistic title={`Capital`} value={capital} prefix={<HomeOutlined/>}/>
             </Card>
           )}
 
           {region && subregion && (
             <Card style={style}>
-              <Statistic title={subregion} value={region} prefix={<GlobalOutlined />} />
+              <Statistic title={subregion} value={region} prefix={<GlobalOutlined/>}/>
               <div style={{position: 'relative', display: 'block', height: 400}}>
-                <Divider />
-                <Title level={4} style={{marginBottom: '-40px'}}>Top {data.length} largest countries in {subregion} based on population.</Title>
+                <Divider/>
+                <Title level={4} style={{marginBottom: '-40px'}}>Top {data.length} largest countries
+                  in {subregion} based on population.</Title>
                 <Pie {...populationChartConfig}/>
               </div>
             </Card>
@@ -77,16 +77,18 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
 
           {population && (
             <Card style={style} loading={loaded}>
-              <Statistic title={`population`} value={population} prefix={<UsergroupAddOutlined />} />
+              <Statistic title={`population`} value={population} prefix={<UsergroupAddOutlined/>}/>
             </Card>
           )}
 
           {languages && (
-            <Card style={style} title={(<><AudioOutlined /> Languages</>)}>
+            <Card style={style} title={(<><AudioOutlined/> Languages</>)}>
               {languages.length > 0 && (
                 <List
                   itemLayout={`horizontal`}
-                  dataSource={languages.map((language) => { return {title: language.name}})}
+                  dataSource={languages.map((language) => {
+                    return {title: language.name}
+                  })}
                   renderItem={(item) => (
                     <List.Item>
                       <List.Item.Meta
@@ -100,17 +102,21 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           )}
 
           {currencies && (
-            <Card style={style} title={(<><DollarOutlined /> Currencies</>)}>
+            <Card style={style} title={(<><DollarOutlined/> Currencies</>)}>
               {currencies.length > 0 && (
                 <List
                   itemLayout={`horizontal`}
-                  dataSource={currencies.map((currency) => { return {title: currency.code, symbol: currency.symbol}})}
+                  dataSource={currencies.map((currency) => {
+                    return {title: `${currency.name} (${currency.code})`, symbol: currency.symbol, code: currency.code}
+                  })}
                   renderItem={(item) => (
-                    <List.Item>
+                    <List.Item style={{display: 'block'}}>
                       <List.Item.Meta
                         title={`${[item.title]}`}
                         description={`Symbol: ${[item.symbol]}`}
                       />
+
+                      <FluctuationGraph rates={exchangeRates} symbol={item.code} />
                     </List.Item>
                   )}
                 />
@@ -119,9 +125,10 @@ const CountryInfo = ({name, capital, region, subregion, population, latlng, curr
           )}
 
         </Col>
-        <Col span={8}className="gutter-row">
+        <Col span={8} className="gutter-row">
           <Map center={latlng} zoom={3}>
-            <Marker anchor={latlng} payload={1} onClick={({ event, anchor, payload }) => {}} />
+            <Marker anchor={latlng} payload={1} onClick={({event, anchor, payload}) => {
+            }}/>
           </Map>
         </Col>
       </Row>
