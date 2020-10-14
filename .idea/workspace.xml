@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9059144-02d3-4fa4-8ed6-a1af6172318b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cypress/integration/countries.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/cypress/integration/countries.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,11 +121,12 @@
       <screen x="0" y="23" width="3440" height="1417" />
     </state>
     <state x="572" y="500" key="MultipleFileMergeDialog/1551.-1417.3440.1417/0.23.3440.1417/3440.23.3440.1417/2519.1463.1680.1027@0.23.3440.1417" timestamp="1602051066828" />
-    <state x="1542" y="427" key="SettingsEditor" timestamp="1602543253306">
+    <state x="1542" y="427" key="SettingsEditor" timestamp="1602649039059">
       <screen x="0" y="23" width="3440" height="1417" />
     </state>
     <state x="1542" y="427" key="SettingsEditor/1551.-1417.3440.1417/0.23.3440.1417/3440.23.3440.1417/2519.1463.1680.1027@0.23.3440.1417" timestamp="1602020200638" />
     <state x="1542" y="427" key="SettingsEditor/3440.23.3440.1417/1643.-1417.3440.1417/0.23.3440.1417/2325.1463.1792.1097@0.23.3440.1417" timestamp="1602543253306" />
+    <state x="1542" y="427" key="SettingsEditor/3440.23.3440.1417/1815.-1417.3440.1417/0.23.3440.1417/2627.1463.1792.1097@0.23.3440.1417" timestamp="1602649039059" />
     <state x="866" y="652" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602525605300">
       <screen x="0" y="23" width="3440" height="1417" />
     </state>

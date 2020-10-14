@@ -1,7 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Country Database
+This is a demo project that shows data related to different countries. It uses `https://restcountries.eu/rest/v2/all` as a source for data was created to help me learn the ins and outs of the Ant Design UI library.
 
 ## Available Scripts
-
 In the project directory, you can run:
 
 ### `yarn start`
@@ -26,6 +27,10 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn e2e`
+
+Runs end-to-end tests in Cypress to verify that our app is functioning correctly.
 
 ### `yarn eject`
 
