@@ -144,13 +144,13 @@ function App() {
 
   return (
     <>
-      <Header className="site-layout-background" style={{ padding: '0 20px 0 0', display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+      <Header className="site-layout-background" style={{ padding: '0 20px 0 0', display: 'flex', justifyContent: 'space-between', width: '100%' }} data-header>
         <div>
           {selectedCountry && (<Title className={'page-title'}>{selectedCountry.name}</Title>)}
         </div>
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <div style={{marginRight: 20}}>
-            <Button type={'primary'} onClick={loadRandomCountry}>Random Country</Button>
+            <Button type={'primary'} onClick={loadRandomCountry} data-random-country-btn>Random Country</Button>
           </div>
 
           {countries.length > 0 && selectedCountry && (
