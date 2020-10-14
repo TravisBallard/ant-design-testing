@@ -11,36 +11,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9059144-02d3-4fa4-8ed6-a1af6172318b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cypress.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/fixtures/example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/countries.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/actions.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/aliasing.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/assertions.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/connectors.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/cookies.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/cypress_api.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/files.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/local_storage.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/location.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/misc.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/navigation.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/network_requests.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/querying.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/spies_stubs_clocks.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/traversal.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/utilities.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/viewport.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/waiting.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/integration/examples/window.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/plugins/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/support/commands.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cypress/support/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/profile.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/fixtures/users.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/actions.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/aliasing.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/assertions.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/connectors.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/cookies.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/cypress_api.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/files.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/local_storage.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/location.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/misc.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/navigation.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/network_requests.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/querying.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/spies_stubs_clocks.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/traversal.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/utilities.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/viewport.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/waiting.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cypress/integration/examples/window.spec.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +107,7 @@
       <workItem from="1602111440378" duration="9092000" />
       <workItem from="1602179694079" duration="19555000" />
       <workItem from="1602525513245" duration="3425000" />
-      <workItem from="1602544592660" duration="8903000" />
+      <workItem from="1602544592660" duration="9790000" />
     </task>
     <servers />
   </component>
